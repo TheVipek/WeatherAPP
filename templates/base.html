@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    
+    <title>Main Page</title>
+    {% endblock %}
+   
+</head>
+<body>
+    <h1 class="menu-text">WeatherAPP</h1>
+    {% block content %}
+    <div id="container">
+        <p id="one" class="weather_option specified-margin centered"><a href="{{url_for('one')}}">One Day</a></p>
+        <p id="seven" class="weather_option specified-margin centered"><a href="/seven">Seven Days</a></p>
+        <p id="fourteen" class="weather_option specified-margin centered"><a href="/fourteen">Fourteen Days</a></p>
+    </div>
+    {%endblock%}
+</body>
+</html>

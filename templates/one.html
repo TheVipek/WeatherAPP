@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/one.css')}}">
+    <title>One Day Weather</title>
+{% endblock %}
+{% block content %}
+    <div id="container_one">
+        <p id="one" class="weather_option centered one-selected"> One Day  </p>
+    </div>
+{% endblock %}  

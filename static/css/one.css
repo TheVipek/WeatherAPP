@@ -1,0 +1,11 @@
+#container_one{
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-areas:
+    "one one one"
+}
+
+#one{
+grid-area:one;
+}
