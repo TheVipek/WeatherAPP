@@ -3,16 +3,19 @@
 body{
     font-family: 'Zen Kaku Gothic New', sans-serif;
     font-weight:400;
-    color:#00203FFF;
-    background-color:#ADEFD1FF;
+    color:#011936FF;
+    background-color:#e8ecf2;
 }
 
 .menu-text{
     font-size:1.6rem;
     text-align: right;
     text-decoration: underline;
+    text-transform: none;
 }
-
+.menu-text a{
+    color:inherit
+}
 #container{
     padding:0;
     display:grid;
@@ -30,6 +33,27 @@ body{
 }
 .centered{
     text-align:center;
+}
+.right{
+    text-align:right;
+}
+.left{
+    text-align:left;
+}
+.big{
+    font-size:5rem;
+}
+.big-small{
+    font-size:3rem;
+}
+.medium{
+    font-size:2.4rem;
+}
+.small{
+    font-size:1.8rem;
+}
+.img-size{
+    width:10%;
 }
 #one{
     grid-area: one;

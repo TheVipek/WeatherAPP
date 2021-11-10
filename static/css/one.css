@@ -1,3 +1,49 @@
+body{
+    padding:0;
+    margin:0;
+    color:#011936FF;
+    background-color:#e8ecf2;
+    text-transform:uppercase;
+}
+
+#now-container{
+    padding:0;
+    margin:0;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    grid-template-areas:
+    "now_info now_info now_info map_info map_info"
+    "now_info now_info now_info map_info map_info"
+    "now_info now_info now_info map_info map_info"
+    "now_info now_info now_info map_info map_info"
+}
+#now-info{
+    display:grid;
+    grid-area:now_info;
+    grid-template-columns: (3,1fr);
+    grid-template-areas:
+    "info info info"
+    "temperature cloud_info cloud_info"
+    "temperature cloud_description cloud_description"
+}
+#timezone-info{
+    grid-area:info;
+}
+#now-temp{
+    grid-area:temperature;
+}
+#now-cloud{
+    grid-area:cloud-info;
+}
+#now-cloud_desc{
+    grid-area:cloud_description;
+}
+
+#map-info{
+    grid-area:map_info;
+    /* border:1px solid RGBA(13,152,186,0.5); */
+
+}
 #container_one{
     padding:0;
     display:grid;
@@ -9,3 +55,29 @@
 #one{
 grid-area:one;
 }
+/* #myChart{
+    /* width:10%; */
+/* }  */
+
+.for_additional{
+    margin:0;
+    padding:0;
+    background-color:RGBA(13,152,186,0.25);
+}
+.show_detailed{  
+    margin-bottom:2.5%;
+    padding:0;
+    color:RGBA(13,152,186,0.9)
+}
+.arrow-down{
+    color:#e8ecf2;
+    font-size:7rem;
+    background-color:RGBA(13,152,186,0.8);
+    border:solid RGBA(13,152,186,0.9);   
+    display:inline-block;
+     /* border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid; 
+     */
+}
+

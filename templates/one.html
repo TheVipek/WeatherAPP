@@ -1,11 +1,53 @@
 {% extends "base.html" %}
+
 {% block head %}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/one.css')}}">
-    <title>One Day Weather</title>
+    <script src="{{url_for('static',filename='javascript/node_modules/chart.js/dist/chart.js')}}"></script>
+    <script src="{{url_for('static',filename='javascript/node_modules/jquery/dist/jquery.js')}}"></script>
+    <script src="{{url_for('static',filename='javascript/node_modules/three/build/three.js')}}"></script>
+    {# <script src="{{url_for('static',filename='javascript/node_modules/animejs/lib/anime.es.js')}}"></script> #}
 {% endblock %}
+{% block title %} One Day {% endblock %}
 {% block content %}
-    <div id="container_one">
-        <p id="one" class="weather_option centered one-selected"> One Day  </p>
+    <div id="now-container">
+        <div id="now-info">
+            <div id="timezone-info" class="centered">
+            <h1 class="centered">Timezone - {{now['name']}} </h1>
+            </div>
+
+        {% if now %}
+            <div id="now-temp">
+            <h3  class="small">Temperature:<span class="medium"> {{now["current"]['temp']}} &#8451 </span> </h3>
+            </div>
+            <div id="now-cloud_desc">
+            <h3 class="right"><span class="">{{now['current']['description']}}  </span>
+            </div>
+            <div id="now-cloud">
+            <img class="right" src="{{now['current']['icon']}}" alt='icon'></img>  </h3>
+            </div>
+            
+        {% endif %}
+        </div>
+        <div id="map-info">
+         <p class="">Location : {{request.cookies.get('city')}}</p>
+         <iframe
+            src="https://www.google.com/maps/embed/v1/place?key={{google_key}}
+    &q={{request.cookies.get('city')}}"> 
+         </iframe>
+        </div>
     </div>
+    <div id="container_one"> 
+        <p id="one" class="weather_option centered one-selected"> One Day </p>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script type="module" src="{{url_for('static',filename='javascript/one-day-plot.js')}}"></script>
+    <div class="for_additional info centered big">
+        <p class="show_detailed">Detailed</p>
+        <div class="animated centered big">
+            <span class="arrow-down">&#8595</span>
+        </div>
+    </div>
+    {# <script type ="module"src="{{url_for('static',filename='javascript/animations.js')}}"></script> #}
 {% endblock %}  
+
+
