@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "animejs": "^3.2.1",
+    "chart.js": "^3.6.0",
+    "dotenv": "^10.0.0",
+    "jquery": "^3.6.0",
+    "require": "^0.4.4",
+    "three": "^0.134.0"
+  }
+}
