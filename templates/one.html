@@ -11,29 +11,31 @@
 {% block content %}
     <div id="now-container">
         <div id="now-info">
-            <div id="timezone-info" class="centered">
+            <div id="timezone-info">
             <h1 class="centered">Timezone - {{now['name']}} </h1>
             </div>
 
         {% if now %}
-            <div id="now-temp">
-            <h3  class="small">Temperature:<span class="medium"> {{now["current"]['temp']}} &#8451 </span> </h3>
+            <div id="now-temp" class="vertically horizontally">
+            <h3 class="small">Temperature:<span class="medium"> {{now["current"]['temp']}} &#8451 </span> </h3>
             </div>
-            <div id="now-cloud_desc">
+            <div id="now-cloud_desc" class="vertically horizontally">
             <h3 class="right"><span class="">{{now['current']['description']}}  </span>
             </div>
-            <div id="now-cloud">
+            <div id="now-cloud" class="vertically horizontally">
             <img class="right" src="{{now['current']['icon']}}" alt='icon'></img>  </h3>
             </div>
             
         {% endif %}
         </div>
         <div id="map-info">
-         <p class="">Location : {{request.cookies.get('city')}}</p>
-         <iframe
+         <p class="small centered">Location : {{request.cookies.get('city')}}</p>
+         <div id="map" class=" vertically horizontally">
+         <iframe 
             src="https://www.google.com/maps/embed/v1/place?key={{google_key}}
     &q={{request.cookies.get('city')}}"> 
          </iframe>
+         </div>
         </div>
     </div>
     <div id="container_one"> 

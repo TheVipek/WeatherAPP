@@ -64,3 +64,12 @@ body{
 #fourteen{
     grid-area:fourteen;
 }
+
+
+
+.vertically{
+    align-items:center;
+}
+.horizontally{
+    justify-items:center;
+}
