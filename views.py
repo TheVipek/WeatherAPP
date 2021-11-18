@@ -40,12 +40,15 @@ def get_openweather():
     city = request.cookies.get('city')
     postal = request.cookies.get('postal')
     openweather_key = os.environ.get('openweather_key')
+    print(openweather_key)
     url = 'https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&units=metric&appid=%s'%(latitude,longitude,openweather_key)
     response = requests.get(url)
     weather = response.json()
 
     now_dataset = {'name':"","current":{'temp':"",'pressure':"",'humidity':"",'wind':"",'description':"",'icon':""}}
     now_dataset["name"] = weather["timezone"]
+    print('- '+weather["timezone"]);
+    print(now_dataset["name"])
     now_dataset["current"]["temp"] = math.floor(weather["current"]["temp"])
     now_dataset["current"]["pressure"] = weather["current"]["pressure"]
     now_dataset["current"]["humidity"] = weather["current"]["humidity"]
@@ -92,7 +95,7 @@ def get_openweather():
 
 
 
-def get_weather():
+# def get_weather():
     latitude = request.cookies.get('latitude')
     longitude = request.cookies.get('longitude')
     city = request.cookies.get('city')
