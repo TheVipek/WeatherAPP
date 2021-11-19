@@ -44,7 +44,7 @@ def get_openweather():
     url = 'https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&units=metric&appid=%s'%(latitude,longitude,openweather_key)
     response = requests.get(url)
     weather = response.json()
-
+    print(weather)
     now_dataset = {'name':"","current":{'temp':"",'pressure':"",'humidity':"",'wind':"",'description':"",'icon':""}}
     now_dataset["name"] = weather["timezone"]
     print('- '+weather["timezone"]);
