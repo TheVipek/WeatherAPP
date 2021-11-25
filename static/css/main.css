@@ -21,7 +21,8 @@ body{
     display:grid;
     grid-template-columns: repeat(7,1fr);
     grid-template-areas:
-    "one one seven seven seven fourteen fourteen";
+    "one one seven seven seven fourteen fourteen"
+    "contact contact contact contact contact contact contact";
 }
 
 .one-selected{
@@ -65,7 +66,30 @@ body{
     grid-area:fourteen;
 }
 
-
+#contact {
+    grid-area:contact;
+    display:grid;
+    align-items:center;
+    justify-items: center;
+}
+#block{
+    border:2px solid #cfd7e4;
+    border-radius:5px;
+    padding:4em;
+    transition: all 5s;
+}
+#block:hover {
+    background-color:#011936FF;
+}
+#block a:visited{
+    color:inherit;
+}
+#block i{
+    transition:all 2s;
+}
+#block:hover i{
+    color:#cfd7e4;
+}
 
 .vertically{
     align-items:center;
