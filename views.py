@@ -71,6 +71,7 @@ from datetime import datetime
 
 
 def get_weather():
+    
     latitude = request.cookies.get('latitude')
     longitude = request.cookies.get('longitude')
     city = request.cookies.get('city')
@@ -121,6 +122,7 @@ def get_weather():
     
     # with open ('static/weather_data.json','w') as to_save:
     #     json.dump(weather_dataset,to_save)
+    app.logger.info("Got weather data informations")
     return weather_dataset
 
 
@@ -128,22 +130,30 @@ def get_weather():
 
 def get_cookie():
     ip_address = request.environ['REMOTE_ADDR']
+    # ip_address = '185.12.21.170'
     access_token = os.environ.get('ipinfo_key')
     handler = ipinfo.getHandler(access_token=access_token)
+    # details = handler.getDetails(ip_address=ip_address)
     details = handler.getDetails(ip_address=ip_address)
+    print(details.all)
     resp = make_response(render_template('base.html'))
     resp.set_cookie('ip',ip_address)
     if ip_address!='127.0.0.1':
+        app.logger.info("Creating cookies...")
         resp.set_cookie('city',details.all['city'])
         resp.set_cookie('postal',details.all['postal'])
         resp.set_cookie('latitude',details.all['latitude'])
         resp.set_cookie('longitude',details.all['longitude'])
+    app.logger.info("Cookies has been created.")
+    print(request.cookies.get('city'))
     return resp
 
 def check_cookie():
+    app.logger.info("Checking cookies...")
     if 'city' in request.cookies:
-        print('cookie found')
+        app.logger.info("Cookies already exists.")
     else:
+        app.logger.info("No cookie found.Creating new ones...")
         return get_cookie()
 
 

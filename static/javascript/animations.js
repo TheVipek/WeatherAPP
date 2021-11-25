@@ -1,8 +1,8 @@
 anime({
-    targets: '.arrow-down',
+    targets: '#block',
     translateX: 250,
     scale:3,
     rotate: '1turn',
-    backgroundColor: '#FFF',
+    backgroundColor: '#CCC',
     duration: 8000
   });
