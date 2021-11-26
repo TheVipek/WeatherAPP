@@ -1,3 +1,4 @@
+from typing import Type
 from werkzeug.wrappers import response
 from app import app
 from flask import  render_template,request,make_response
@@ -6,7 +7,7 @@ import ipinfo
 import os
 import math
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 # def get_cookies():
@@ -70,6 +71,43 @@ from datetime import datetime
 
 
 
+
+
+def get_cookie():
+    # ip_address = request.environ['REMOTE_ADDR']
+    ip_address = "185.12.21.170"
+    access_token = os.environ.get('ipinfo_key')
+    handler = ipinfo.getHandler(access_token=access_token)
+    details = handler.getDetails(ip_address=ip_address)
+    print(details.all)
+
+    resp = make_response(render_template('base.html'))
+
+    resp.set_cookie('ip',ip_address,expires=datetime.now()+timedelta(days=30))
+    
+    app.logger.info("Creating cookies...")
+
+    if ip_address!='127.0.0.1':
+        print(details.all['postal'])
+        print(details.all['latitude'])
+        print(details.all['longitude'])
+        resp.set_cookie('city',details.all['city'],expires=datetime.now() + timedelta(days=30))
+        resp.set_cookie('postal',details.all['postal'],expires=datetime.now() + timedelta(days=30))
+        resp.set_cookie('latitude',details.all['latitude'],expires=datetime.now() + timedelta(days=30))
+        resp.set_cookie('longitude',details.all['longitude'],expires=datetime.now() + timedelta(days=30))
+        app.logger.info("Cookies has been created.")
+    return resp
+
+def check_cookie():
+        app.logger.info("Checking cookies...")
+        if 'city' in request.cookies:
+            app.logger.info("Cookies already exists.")
+        else:
+            app.logger.info("No cookie found.Creating new ones...")
+            return get_cookie()
+    
+
+
 def get_weather():
     
     latitude = request.cookies.get('latitude')
@@ -126,41 +164,19 @@ def get_weather():
     return weather_dataset
 
 
-
-
-def get_cookie():
-    ip_address = request.environ['REMOTE_ADDR']
-    # ip_address = '185.12.21.170'
-    access_token = os.environ.get('ipinfo_key')
-    handler = ipinfo.getHandler(access_token=access_token)
-    # details = handler.getDetails(ip_address=ip_address)
-    details = handler.getDetails(ip_address=ip_address)
-    print(details.all)
-    resp = make_response(render_template('base.html'))
-    resp.set_cookie('ip',ip_address)
-    if ip_address!='127.0.0.1':
-        app.logger.info("Creating cookies...")
-        resp.set_cookie('city',details.all['city'])
-        resp.set_cookie('postal',details.all['postal'])
-        resp.set_cookie('latitude',details.all['latitude'])
-        resp.set_cookie('longitude',details.all['longitude'])
-    app.logger.info("Cookies has been created.")
-    print(request.cookies.get('city'))
-    return resp
-
-def check_cookie():
-    app.logger.info("Checking cookies...")
-    if 'city' in request.cookies:
-        app.logger.info("Cookies already exists.")
-    else:
-        app.logger.info("No cookie found.Creating new ones...")
-        return get_cookie()
-
+@app.route('/')
+  
 
 @app.route('/')
 def base():
-    check_cookie()
-    return render_template('base.html')
+    app.logger.info("Checking cookies...")
+    if 'city' in request.cookies:
+        app.logger.info("Cookies already exists.")
+        return render_template('base.html')
+    else:
+        return get_cookie()
+    
+        
 
 
 @app.route('/one')
@@ -177,12 +193,26 @@ def base():
     #   return render_template('one.html',now = now ,hourly = hourly, google_key=google_key)  # rendered html and function get_weather that returns json with all needed information  
     #about weather
 
-def one():
-    check_cookie()
-    one_day_dataset =get_weather()
-    with open('static/one_day.json','w',encoding='utf-8') as f:
-        json.dump(one_day_dataset,f)
 
-    google_key = os.environ.get('googleapi')
-    return render_template('one_2ndapi.html',day = one_day_dataset, google_key=google_key)  # rendered html and function get_weather that returns json with all needed information 
+
+
+def one():
+    # app.logger.info("Checking cookies...")
+    # if 'city' in request.cookies:
+    #     app.logger.info("Cookies already exists.")
+    # else:
+    #     app.logger.info("No cookie found.Creating new ones...")
+    #     get_cookie()
+    app.logger.info("Checking cookies...")
+    if 'city' in request.cookies:
+        app.logger.info("Cookies already exists.")
+        one_day_dataset =get_weather()
+        with open('static/one_day.json','w',encoding='utf-8') as f:
+            json.dump(one_day_dataset,f)
+
+        google_key = os.environ.get('googleapi')
+        return render_template('one_2ndapi.html',day = one_day_dataset, google_key=google_key)  # rendered html and function get_weather that returns json with all needed information 
+    else:
+        return get_cookie()
+    
  
