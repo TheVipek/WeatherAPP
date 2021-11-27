@@ -44,6 +44,9 @@ body{
 .big{
     font-size:5rem;
 }
+.big-medium{
+    font-size:4rem;
+}
 .big-small{
     font-size:3rem;
 }
@@ -53,8 +56,25 @@ body{
 .small{
     font-size:1.8rem;
 }
+.very-small{
+    font-size:1rem;
+}
+.little-margin{
+    margin:0.2rem;
+}
 .img-size{
     width:10%;
+}
+.max-width{
+    display:block;
+    width:100%;
+}
+.original-size{
+    max-width:100%;
+    height:auto;
+}
+.img_right{
+    margin-right:0;
 }
 #one{
     grid-area: one;
