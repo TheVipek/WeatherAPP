@@ -7,11 +7,30 @@ body{
     background-color:#e8ecf2;
 }
 
+
+#nav{
+    display:block;
+    width:100%;
+    text-align:right;
+}
+#nav li{
+    display:inline;
+}
+
+
 .menu-text{
     font-size:1.6rem;
     text-align: right;
     text-decoration: underline;
     text-transform: none;
+    margin-right:1em;
+    transition: color 1s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1)
+
+}
+.menu-text:hover{
+   color:#abb9d5;
+   
 }
 .menu-text a{
     color:inherit
@@ -57,7 +76,7 @@ body{
     font-size:1.8rem;
 }
 .very-small{
-    font-size:1rem;
+    font-size:0.7rem;
 }
 .little-margin{
     margin:0.2rem;
@@ -116,4 +135,10 @@ body{
 }
 .horizontally{
     justify-items:center;
+}
+.vertically-c{
+    align-content: center;
+}
+.horizontally-c{
+    justify-content: center;
 }

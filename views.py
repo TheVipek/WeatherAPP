@@ -165,9 +165,13 @@ def get_weather():
     print(weather_dataset['days'][0]['condition']['icon'][7])
     return weather_dataset
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
-@app.route('/')
-  
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 @app.route('/')
 def base():

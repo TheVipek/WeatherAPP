@@ -80,9 +80,9 @@ const myChart = new Chart(ctx, {
             data_set["days"][0]["temp_c"][8],data_set["days"][0]["temp_c"][10],data_set["days"][0]["temp_c"][12],data_set["days"][0]["temp_c"][14],
             data_set["days"][0]["temp_c"][16],data_set["days"][0]["temp_c"][18],data_set["days"][0]["temp_c"][20],data_set["days"][0]["temp_c"][22]
             ],
-            backgroundColor: ['RGBA(249,220,92,0.8)'], // used color inside label selector and points that are at graph
+            backgroundColor: ['#2c685b'], // used color inside label selector and points that are at graph
             
-            borderColor: ['RGBA(237,37,78,1)'], // color of line and label border
+            borderColor: ['#9e4356'], // color of line and label border
             fill:true,
             tension:0.5, // making it less 'tensionous'
             borderWidth: 5
