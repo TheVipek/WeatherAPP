@@ -21,7 +21,7 @@ form > input {
     margin-top:1em;
 }
 .remember{
-    margin:1.5em 0em 1.5em 2.5em;
+    margin:1.5em 0em 0em 2.5em;
     width:80%;
 }
 #sign_button{
@@ -71,4 +71,22 @@ form > input {
     border-color:#843848;
     box-shadow:0em 0em 10px 4px #843848;
     background-color:#843848;
+}
+
+#register-form{
+    margin-top:0;
+}
+.form-error{
+    color:#843848;
+}
+.success{
+    width:100%;
+}
+@media only screen and (max-width:800px){
+    #sign_in{
+        width:100%;
+    }
+    form > input {
+        width:100%;
+    }
 }

@@ -7,30 +7,36 @@
 
 {% block content %}
 <div id="sign_in">
-<form action="{{url_for('static','')}}" method="post">
-<div class="sign_div col horizontally vertically"> 
-<span class="form-text small">Login</span>
-<input type="text" name="login" id="login">
-<span class="form-text small">Password</span>
-<input type="text" name="password" id="password">
+    <form id="login-form" action="" method="post">
+        <div class="sign_div col horizontally vertically"> 
+            {{form.username.label(class='form-text small')}}
+            {{form.username(id="login")}}
+            {{form.password.label(class="form-text small")}}
+            {{form.password(id="password")}}
+        </div>
+        <div class="sign_div row remember horizontally vertically horizontally-c vertically-c">
+            {{form.Remember_Me(id="remember")}}
+            {{form.Remember_Me.label(class="form-text")}}
+            
+        </div>
+        <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+            {{form.submit(class="sign_button")}}
+            {%with messages = get_flashed_messages()%}
+                {% if messages %}
+                    {% for message in messages%}
+                        <span>{{message}}</span>
+                    {%endfor%}
+                {%endif%}
+            {%endwith%}
+        </div>
+    </form>
+    <form id="register-form" action="{{url_for('register')}}">
+        <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+            <span class="form-text">If you don't have account</span>
+            <input type="submit" class="sign_button register_button"  value="Register">
+        </div>
+    </form>
 </div>
-<div class="sign_div row remember horizontally vertically horizontally-c vertically-c">
-    <input type="checkbox" name="remember" id="remember">
-    <span class="form-text">Remember me</span>
-</div>
-
-<div class="sign_div col horizontally vertically horizontally-c vertically-c">
-    <input type="submit" class="sign_button"  value="Sign In">
-</div>
-<div class="sign_div col horizontally vertically horizontally-c vertically-c">
-    <span class="form-text">If you don't have account</span>
-    <input type="submit" class="sign_button register_button"  value="Register">
-</div>
-</form>
-
-</div>
-
-</form>
 {# 
 <div id="contact">
     <div id="block">

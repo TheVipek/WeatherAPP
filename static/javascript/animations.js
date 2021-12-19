@@ -1,5 +1,5 @@
 anime({
-    targets: '#block',
+    targets: '#now-container',
     translateX: 250,
     scale:3,
     rotate: '1turn',

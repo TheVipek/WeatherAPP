@@ -13,13 +13,21 @@
     <title>{% block title %} Main page {% endblock %}</title>
 </head>
 <body>
-    <div id ="nav">
+
+    {% block content %}
+    {%with messages = get_flashed_messages()%}
+        {%if messages%}
+            {%for message in messages%}
+                <span>{{message}}</span>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+        <div id ="nav">
     <ul>
         <li class="menu-text"><a href="{{url_for('login')}}">Sign In</a></li>
     </ul>
 
     </div>
-    {% block content %}
     <div id="container">
         <p id="one" class="weather_option specified-margin centered"><a href="{{url_for('one')}}">One Day</a></p>
         {# <p id="three" class="weather_option specified-margin centered"><a href="{{url_for('three')}}">Three Days</a></p> #}
