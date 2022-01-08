@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/one.css')}}">
+    <script src="{{url_for('static',filename='javascript/node_modules/chart.js/dist/chart.js')}}"></script>
+    <script src="{{url_for('static',filename='javascript/node_modules/jquery/dist/jquery.js')}}"></script>
+    <script src="{{url_for('static',filename='javascript/node_modules/three/build/three.js')}}"></script>
+    <script src="{{url_for('static',filename='javascript/one-day-scripts.js')}}"> </script>
+    {# <script src="{{url_for('static',filename='javascript/node_modules/animejs/lib/anime.es.js')}}"></script> #}
+
+{% endblock %}
+{% block title %} One Day {% endblock %}
+{% block content %}
+    <div id="now-container">
+        <div id="now-info">
+            <div id="timezone-info">
+            <h1 class="centered">Timezone - 
+            {{day['timezone']}}  
+            </h1>
+            </div>
+
+        {% if day %}
+            <div id="now-temp" class="vertically horizontally">
+            <h3 class="small">Temperature:<span class="medium"> 
+            {{day["now"]['temp_c']}} 
+             &#8451 
+            </span> </h3>
+            </div>
+            <div id="now-time" class="leftup_text-grid">
+            <h3 class="very-small little-margin">LAST TIME UPDATED:<span class="very-small little-margin"> {{day["now"]["last_updated"]}}  </span></h3>
+            </div>
+            <div id="now-cloud_desc" class="vertically horizontally">
+            <h3 class="right"><span class="">
+            {{day['now']['condition_text']}}   
+            </span>
+            </div>
+            <div id="now-cloud" class="vertically horizontally">
+            <img class="right" src="{{day['now']['condition_icon']}}" alt='icon'></img>  
+            
+            </h3>
+            </div>
+            
+        {% endif %}
+        </div>
+        <div id="map-info">
+         <p class="small centered">Location : {{request.cookies.get('city')}}</p>
+         <div id="map" class=" vertically horizontally">
+         <iframe 
+            src="https://www.google.com/maps/embed/v1/place?key={{google_key}}
+    &q={{request.cookies.get('city')}}"> 
+         </iframe>
+         </div>
+        </div>
+    </div>
+    <div id="container_one"> 
+        <p id="one" class="weather_option centered one-selected"> One Day Chart </p>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script type="text/javascript" src="{{url_for('static',filename='javascript/one-day-plot-2ndapi.js')}}"></script>
+    <div class="for_additional info centered big">
+        <p class="show_detailed">Detailed</p>
+        <div id="show_det_click" class="animated centered big" onclick="showDetails()">
+            <span class="arrow-down">&#8595</span>
+        </div>
+        <div class="additional_w_cont left">
+        {% if day %}
+        <div id="morning" class="time_of_day">
+            <div class="detailed_title">
+                <span class="big-medium">Morning </span>  <img class="img_right original-size" src="{{day['days'][0]['condition']['icon'][6]}}"></img>
+            </div>
+            <div class="detailed_info">
+                <span class="small element list-margin">Temperature:   {{day["days"][0]["temp_c"][6]}} &#8451</span>
+                <span class="small element list-margin">Feels Like: {{day["days"][0]["feelslike_c"][6]}}   &#8451</span>
+                <span class="small element list-margin">Pressure:  {{day["days"][0]["pressure"][6]}}hPa   <i class="fas fa-tachometer-alt"></i></span>
+                <span class="small element list-margin">Wind KPH:  {{day["days"][0]["wind_kph"][6]}}   <i class="fas fa-wind"></i></span>
+                <span class="small element list-margin">Rain Chance:   {{day["days"][0]["chance_of_rain"][6]}}    <i class="fas fa-umbrella"></i></span>
+                <span class="small element list-margin">Snow Chance:   {{day["days"][0]["chance_of_snow"][6]}}    <i class="fas fa-snowflake"></i></span>
+            </div>
+        </div>
+        <div id="day" class="time_of_day">
+        <div class="detailed_title">
+                <span class="big-medium">Day </span>  <img class="img_right original-size" src="{{day['days'][0]['condition']['icon'][11]}}"></img>
+            </div>
+            <div class="detailed_info">
+                <span class="small element list-margin">Temperature:   {{day["days"][0]["temp_c"][11]}} &#8451</span>
+                <span class="small element list-margin">Feels Like: {{day["days"][0]["feelslike_c"][11]}}   &#8451</span>
+                <span class="small element list-margin">Pressure:  {{day["days"][0]["pressure"][11]}}hPa  <i class="fas fa-tachometer-alt"></i></span>
+                <span class="small element list-margin">Wind KPH:  {{day["days"][0]["wind_kph"][11]}}   <i class="fas fa-wind"></i></span>
+                <span class="small element list-margin">Rain Chance:   {{day["days"][0]["chance_of_rain"][11]}}    <i class="fas fa-umbrella"></i></span>
+                <span class="small element list-margin">Snow Chance:   {{day["days"][0]["chance_of_snow"][11]}}    <i class="fas fa-snowflake"></i></span>
+            </div>
+        </div>
+        <div id="evening" class="time_of_day">
+            <div class="detailed_title">
+                <span class="big-medium">Evening </span>  <img class="img_right original-size" src="{{day['days'][0]['condition']['icon'][19]}}"></img>
+            </div>
+            <div class="detailed_info">
+                <span class="small element list-margin">Temperature:   {{day["days"][0]["temp_c"][19]}} &#8451</span>
+                <span class="small element list-margin">Feels Like: {{day["days"][0]["feelslike_c"][19]}}   &#8451</span>
+                <span class="small element list-margin">Pressure:  {{day["days"][0]["pressure"][19]}}hPa   <i class="fas fa-tachometer-alt"></i></span>
+                <span class="small element list-margin">Wind KPH:  {{day["days"][0]["wind_kph"][19]}}   <i class="fas fa-wind"></i></span>
+                <span class="small element list-margin">Rain Chance:   {{day["days"][0]["chance_of_rain"][19]}}    <i class="fas fa-umbrella"></i></span>
+                <span class="small element list-margin">Snow Chance:   {{day["days"][0]["chance_of_snow"][19]}}    <i class="fas fa-snowflake"></i></span>
+            </div>
+        </div>
+        <div id="night" class="time_of_day">
+        <div class="detailed_title">
+                <span class="big-medium">Night </span>  <img class="img_right original-size" src="{{day['days'][0]['condition']['icon'][23]}}"></img>
+            </div>
+            <div class="detailed_info">
+                <span class="small element list-margin">Temperature:   {{day["days"][0]["temp_c"][23]}} &#8451</span>
+                <span class="small element list-margin">Feels Like: {{day["days"][0]["feelslike_c"][23]}}   &#8451</span>
+                <span class="small element list-margin">Pressure:  {{day["days"][0]["pressure"][23]}}hPa   <i class="fas fa-tachometer-alt"></i></span>
+                <span class="small element list-margin">Wind KPH:  {{day["days"][0]["wind_kph"][23]}}   <i class="fas fa-wind"></i></span>
+                <span class="small element list-margin">Rain Chance:   {{day["days"][0]["chance_of_rain"][23]}}    <i class="fas fa-umbrella"></i></span>
+                <span class="small element list-margin">Snow Chance:   {{day["days"][0]["chance_of_snow"][23]}}    <i class="fas fa-snowflake"></i></span>
+            </div>
+        </div>
+        {% endif %}
+        </div>
+    </div>
+    
+{% endblock %}  
+
+

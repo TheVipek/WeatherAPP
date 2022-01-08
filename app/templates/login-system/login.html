@@ -1,0 +1,46 @@
+{%extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/sign.css')}}">
+{% endblock  %}
+{%block title%} Sign In {%endblock%}
+
+{% block content %}
+<div id="sign_in">
+    <form id="login-form" action="" method="post" >
+        <div class="sign_div col horizontally vertically"> 
+            {{form.username.label(class='form-text small')}}
+            {{form.username(id="login")}}
+            {{form.password.label(class="form-text small")}}
+            {{form.password(id="password")}}
+        </div>
+        <div class="sign_div row remember horizontally vertically horizontally-c vertically-c">
+            {{form.Remember_Me(id="remember")}}
+            {{form.Remember_Me.label(class="form-text")}}
+            
+        </div>
+        <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+            {{form.submit(class="sign_button")}}
+            {%with messages = get_flashed_messages()%}
+                {% if messages %}
+                    {% for message in messages%}
+                        <span style="color:#dc3545;">{{message}}</span>
+                    {%endfor%}
+                {%endif%}
+            {%endwith%}
+        </div>
+    </form>
+    <form id="register-form" action="{{url_for('auth.register')}}">
+        <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+            <span class="form-text">If you don't have account</span>
+            <input type="submit" class="sign_button register_button"  value="Register">
+        </div>
+    </form>
+</div>
+{# 
+<div id="contact">
+    <div id="block">
+         <a href="https://github.com/TheVipek/WeatherAPP" target="_blank"><i class="fab fa-github-alt fa-5x "></i></a>  
+    </div> 
+</div> #}
+{% endblock  %}
