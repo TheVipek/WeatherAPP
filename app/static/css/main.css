@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400&display=swap');
+
+body{
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight:400;
+    color:#011936FF;
+    background-color:#e8ecf2;
+}
+
+
+#nav{
+    display:block;
+    width:100%;
+    text-align:right;
+}
+#nav li{
+    display:inline;
+}
+
+
+.menu-text{
+    font-size:1.6rem;
+    text-align: right;
+    text-decoration: underline;
+    text-transform: none;
+    margin-right:1em;
+    transition: color 1s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1)
+
+}
+.menu-text:hover{
+   color:#abb9d5;
+   
+}
+.menu-text a{
+    color:inherit
+}
+#container{
+    padding:0;
+    display:grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-areas:
+    "one one seven seven seven fourteen fourteen"
+    "contact contact contact contact contact contact contact";
+}
+
+.one-selected{
+    font-size:3.5rem
+}
+
+.specified-margin{
+    margin: 5em 2.5em 5em 0;
+}
+.centered{
+    text-align:center;
+}
+.right{
+    text-align:right;
+}
+.left{
+    text-align:left;
+}
+.big{
+    font-size:5rem;
+}
+.big-medium{
+    font-size:4rem;
+}
+.big-small{
+    font-size:3rem;
+}
+.medium{
+    font-size:2.4rem;
+}
+.small{
+    font-size:1.8rem;
+}
+.very-small{
+    font-size:0.9rem;
+}
+.little-margin{
+    margin:0.2rem;
+}
+.img-size{
+    width:10%;
+}
+.max-width{
+    display:block;
+    width:100%;
+}
+.original-size{
+    max-width:100%;
+    height:auto;
+}
+.img_right{
+    margin-right:0;
+}
+#one{
+    grid-area: one;
+}
+#seven{
+    grid-area:seven;
+}
+#fourteen{
+    grid-area:fourteen;
+}
+
+#contact {
+    grid-area:contact;
+    display:grid;
+    align-items:center;
+    justify-items: center;
+}
+#block{
+    border:2px solid #cfd7e4;
+    border-radius:5px;
+    padding:4em;
+    transition: all 5s;
+}
+#block:hover {
+    background-color:#011936FF;
+}
+#block a:visited{
+    color:inherit;
+}
+#block i{
+    transition:all 2s;
+}
+#block:hover i{
+    color:#cfd7e4;
+}
+
+.vertically{
+    align-items:center;
+}
+.horizontally{
+    justify-items:center;
+}
+.vertically-c{
+    align-content: center;
+}
+.horizontally-c{
+    justify-content: center;
+}

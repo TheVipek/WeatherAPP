@@ -1,0 +1,21 @@
+
+
+#VARIABLES TESTED IN LOCAL ENVIRONMENT
+.flaskenv
+
+
+__pycache__
+
+
+
+#VENV
+weather-venv
+
+#TEMPORARY DATABASE
+app/users.sqlite3
+
+#NOTHING IMPORTANT
+ideas.py
+
+#LOGGING
+events.log

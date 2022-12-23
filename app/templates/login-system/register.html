@@ -1,0 +1,105 @@
+{%extends "base.html"%}}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/sign.css')}}">
+{% endblock %}
+
+{% block title %} Register {% endblock %}
+
+{% block content%}
+
+<div id="sign_in">
+{# {% from "_formhelpers.html" import render_field %} #}
+<form id="login-form" action="" method="POST">
+{# {{form.hidden_tag()}} #}
+    <div class="sign_div col horizontally vertically">
+    {{form.username.label(class='form-text small')}}</span>
+    {{form.username(id="login") }}
+        {% for error in form.username.errors %}
+          <span class="form-text very-small form-error">
+              {{error}}
+          </span>
+          {% endfor %}
+    {{form.password.label(class='form-text small')}}
+    {{form.password(id="password") }}
+    {% for error in form.password.errors %}
+          <span class="form-text very-small form-error">
+              {{error}}
+          </span>
+          {% endfor %}
+    {{form.re_password.label(class='form-text small')}}
+    {{form.re_password(id="re-password")}}
+       {% for error in form.password.errors %}
+          <span class="form-text very-small form-error">
+              {{error}}
+          </span>
+          {% endfor %}
+    {{form.email.label(class='form-text small')}}
+    {{form.email(id="email") }}
+        {% for error in form.email.errors %}
+            <span class="form-text very-small form-error">
+                {{error}}
+            </span>
+            {% endfor %}
+    {{form.re_email.label(class='form-text small')}}
+    {{form.re_email(id="re-email") }}
+        {% for error in form.email.errors %}
+            <span class="form-text very-small form-error">
+                {{error}}
+            </span>
+            {% endfor %}
+    </div>
+    <div class="sign_div row notification horizontally vertically horizontally-c vertically-c">
+            {{form.newsletter}}
+            <span class="form-text">{{form.newsletter.label}}</span>
+        </div>
+        <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+        {{form.submit(class="sign_button register_button")}}
+        {% with messages = get_flashed_messages()%}
+        {% if messages %}
+            {% for mess in messages%}
+                <span style="color:#dc3545;">{{mess}}</span>
+            {% endfor %}
+        {%endif%}
+        {%endwith%}
+            {# <input type="submit" class="sign_button register_button"  value="Register"> #}
+        </div>
+    {# {%with message = get_flashed_messages()%}
+        {% if messages %}
+            <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+            {% for message in messages %}
+                <p class="form-text small form-error"> {{message}} </p>
+            {% endfor %}
+            </div>
+        {%endif%} 
+    {% endwith %} #}
+    
+</form>
+</div>
+    {# <form id="login-form" action="" method="POST">
+        <div class="sign_div col horizontally vertically"> 
+            <span class="form-text small">Username</span>
+            <input type="text" name="login" id="login" required>
+            <span class="form-text small" >Password</span>
+            <input type="password" name="password" id="password" required>
+            <span class="form-text small">Repeat Password</span>
+            <input type="password" name="re-password" id="re-password" required>
+            <span class="form-text small">E-mail</span>
+            <input type="email" name="email" id="email" required>
+            <span class="form-text small">Repeat E-mail</span>
+            <input type="text" name="email" id="re-email" required>
+        </div>
+        <div class="sign_div row notification horizontally vertically horizontally-c vertically-c">
+            <input type="checkbox" name="newsletter" id="newsletter">
+            <span class="form-text">Want join to newsletter? (Informations about updates in first place!)</span>
+        </div>
+        <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+            <input type="submit" class="sign_button register_button"  value="Register">
+        </div>
+         <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+            <span id="confirmation" class="form-text"></span>
+        </div>
+    </form> #}
+    {# <script src="{{url_for('static',filename='javascript/register.js')}}"> #}
+{% endblock %}

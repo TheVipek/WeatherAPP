@@ -1,0 +1,9 @@
+@import "../javascript/node_modules/bootstrap/scss/_root.scss";
+
+
+#upload-box{
+    cursor: pointer;
+}
+#fileInput{
+    display:none;
+}

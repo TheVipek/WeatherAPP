@@ -1,0 +1,36 @@
+{%extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/sign.css')}}">
+{% endblock  %}
+{%block title%} Success {%endblock%}
+
+{% block content %}
+
+<div id="sign_in">
+
+        <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+        {%with messages = get_flashed_messages()%}
+        {%if messages%}
+            {% for message in messages %}
+            <span class="success form-text medium horizontally-c vertically-c">{{message}}</span>
+            
+            {% endfor %}
+        {%endif%}
+        {%endwith%}
+        
+         <a href="{{url_for('auth.login')}}" class="success sign_div col horizontally vertically horizontally-c vertically-c"><button type="submit" class="sign_button small" style="width:75%;">Login</button></a> 
+        {# <form action="/login" id="login-form" style="width:100%;">
+            <div class="sign_div col horizontally vertically horizontally-c vertically-c">
+        {{form.submit(style="width:50%;",class="sign_button small")}}
+        </div>
+            </form> #}
+        </div>
+</div>
+{# 
+<div id="contact">
+    <div id="block">
+         <a href="https://github.com/TheVipek/WeatherAPP" target="_blank"><i class="fab fa-github-alt fa-5x "></i></a>  
+    </div> 
+</div> #}
+{% endblock  %}

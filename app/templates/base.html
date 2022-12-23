@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    <script src="https://kit.fontawesome.com/47b06a9c6c.js" crossorigin="anonymous"></script>
+    {# <script src="{{url_for('static',filename='javascript/animations.js')}}"></script> #}
+    {% block head %}
+    
+    {% endblock %}
+    <title>{% block title %} Main page {% endblock %}</title>
+</head>
+<body>
+
+    {% block content %}
+    {%with messages = get_flashed_messages()%}
+        {%if messages%}
+            {%for message in messages%}
+                <span>{{message}}</span>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+        <div id ="nav">
+    <ul>
+    {%if current_user.is_authenticated %}
+        {# <li class="menu-text"><a href="">Settings</a></li> #}
+        <li class="menu-text"><a href="{{url_for('auth.dashboard')}}"><i class="fas fa-cog"></i>Settings</a></li>
+        <li class="menu-text"><a href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+
+    {% else %}
+        <li class="menu-text"><a href="{{url_for('auth.login')}}"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+        
+    {%endif%}
+    </ul>
+
+    </div>
+    <div id="container">
+        <p id="one" class="weather_option specified-margin centered"><a href="{{url_for('main.one')}}">One Day</a></p>
+        {# <p id="three" class="weather_option specified-margin centered"><a href="{{url_for('three')}}">Three Days</a></p> #}
+        {# <p id="ten" class="weather_option specified-margin centered"><a href="{{url_for('ten')}}">Ten Days</a></p> #}
+    </div>
+    <div id="contact">
+    
+        <div id="block">
+             <a href="https://github.com/TheVipek/WeatherAPP" target="_blank"><i class="fab fa-github-alt fa-5x "></i></a>  
+        </div> 
+    </div>
+    {%endblock%}
+
+</body>
+</html>
